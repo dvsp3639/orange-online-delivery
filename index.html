@@ -1,0 +1,1392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orange Restaurant - Menu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+/* ------------------------------------------------------------
+   APPLE MINIMAL THEME — MOBILE-FIRST
+-------------------------------------------------------------*/
+
+:root {
+    --primary: #ff7a00; /* Subtle orange accent */
+    --primary-dark: #d56700;
+
+    --bg: #fdfdfd;
+    --card-bg: #ffffff;
+    --text: #111;
+    --text-light: #555;
+    --border: #e5e5e5;
+
+    --radius: 14px;
+    --shadow: 0 2px 8px rgba(0,0,0,0.06);
+
+    /* Apple-like typography scale */
+    --fs-xs: 0.78rem;
+    --fs-sm: 0.88rem;
+    --fs-md: 0.95rem;
+    --fs-lg: 1.15rem;
+    --fs-xl: 1.35rem;
+}
+
+/* BASE --------------------------------------------------------*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: -0.2px;
+}
+
+body {
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.4;
+    padding-bottom: 80px;
+    font-size: var(--fs-md);
+}
+
+/* Container */
+.container {
+    width: 100%;
+    max-width: 1080px;
+    margin: auto;
+    padding: 0 18px;
+}
+
+/* ------------------------------------------------------------
+   HEADER
+-------------------------------------------------------------*/
+
+header {
+    backdrop-filter: blur(22px);
+    background: rgba(255,255,255,0.75);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    padding: 14px 0;
+}
+
+.logo {
+    font-size: var(--fs-lg);
+    font-weight: 700;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+}
+
+.logo i {
+    margin-right: 8px;
+    color: var(--primary);
+}
+
+/* ------------------------------------------------------------
+   CATEGORY TABS (Elegant center-aligned with no scrollbar)
+-------------------------------------------------------------*/
+
+.categories {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(22px);
+    padding: 16px 0;
+    position: sticky;
+    top: 60px;
+    z-index: 40;
+    overflow: hidden; /* Prevent scrollbar from showing */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.checkout-active .categories {
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+}
+
+.tabs-container {
+    display: flex;
+    justify-content: center; /* Center tabs horizontally */
+    gap: 8px;
+    padding: 0 20px;
+    overflow-x: auto; /* Allow horizontal movement */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge */
+    scroll-behavior: smooth;
+}
+
+.tabs-container::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+
+.tab {
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    border: 1px solid var(--border);
+    background: #f8f8f8;
+    color: var(--text-light);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    flex-shrink: 0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.tab i {
+    font-size: 0.8rem;
+}
+
+.tab.active {
+    background: var(--text);
+    color: white;
+    border-color: var(--text);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    transform: translateY(-1px);
+}
+
+.tab:hover:not(.active) {
+    background: #f0f0f0;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+/* ------------------------------------------------------------
+   SECTION TITLES
+-------------------------------------------------------------*/
+
+.section-title {
+    font-size: var(--fs-xl);
+    font-weight: 700;
+    margin: 26px 0 12px;
+}
+
+.sub-section-title {
+    font-size: var(--fs-lg);
+    margin: 20px 0 12px;
+    color: var(--text-light);
+    font-weight: 600;
+}
+
+/* ------------------------------------------------------------
+   MENU ITEM CARDS — Apple Card Style
+-------------------------------------------------------------*/
+
+.menu-items {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+}
+
+@media (min-width: 500px) and (max-width: 699px) {
+    .menu-items {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+}
+
+@media (min-width: 700px) {
+    .menu-items {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+}
+
+.menu-item {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    box-shadow: var(--shadow);
+    transition: 0.2s;
+}
+
+.menu-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.07);
+}
+
+.item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 6px;
+}
+
+.item-name {
+    font-size: var(--fs-md);
+    font-weight: 600;
+    max-width: 70%;
+    line-height: 1.3;
+}
+
+.item-price {
+    font-weight: 700;
+    color: var(--primary);
+    font-size: var(--fs-md);
+    white-space: nowrap;
+}
+
+.item-description {
+    font-size: var(--fs-sm);
+    color: var(--text-light);
+    margin: 8px 0 12px;
+}
+
+.recommended-badge {
+    background: var(--primary);
+    color: #fff;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 0.7rem;
+    margin-left: 8px;
+}
+
+.customizable {
+    background: #f0f7ff;
+    color: #0066cc;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 0.7rem;
+    margin-right: 8px;
+}
+
+/* ------------------------------------------------------------
+   BUTTONS & QUANTITY
+-------------------------------------------------------------*/
+
+.add-btn {
+    background: var(--primary);
+    color: white;
+    padding: 8px 16px;
+    font-size: var(--fs-sm);
+    border-radius: 20px;
+    border: none;
+    transition: 0.2s;
+}
+
+.add-btn:hover {
+    background: var(--primary-dark);
+}
+
+.quantity-controls {
+    display: none;
+    align-items: center;
+    gap: 10px;
+}
+
+.qty-btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: #fafafa;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.qty-btn:active {
+    background: #f0f0f0;
+}
+
+.quantity-display {
+    font-weight: 600;
+}
+
+/* ------------------------------------------------------------
+   CART FOOTER — Apple bottom sheet style
+-------------------------------------------------------------*/
+
+.cart-footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: rgba(255,255,255,0.9);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid var(--border);
+    padding: 14px 0;
+    transform: translateY(100%);
+    transition: 0.35s ease;
+}
+
+.cart-footer.active {
+    transform: translateY(0);
+}
+
+.cart-footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cart-info {
+    display: flex;
+    gap: 20px;
+    font-size: var(--fs-md);
+}
+
+.summary-btn {
+    background: var(--text);
+    color: white;
+    padding: 10px 22px;
+    font-size: var(--fs-sm);
+    border-radius: 30px;
+    border: none;
+}
+
+.summary-btn:hover {
+    opacity: 0.85;
+}
+
+/* ------------------------------------------------------------
+   CHECKOUT PAGE — Elegant Full Screen Design
+-------------------------------------------------------------*/
+
+.checkout-page {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg);
+    z-index: 1000;
+    transform: translateX(100%);
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.checkout-page.active {
+    transform: translateX(0);
+}
+
+.checkout-header {
+    padding: 20px 24px;
+    background: white;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.checkout-header h2 {
+    font-size: var(--fs-xl);
+    font-weight: 700;
+    flex: 1;
+    text-align: center;
+}
+
+.back-to-menu {
+    background: none;
+    border: none;
+    color: var(--text);
+    font-size: var(--fs-md);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: background 0.2s;
+}
+
+.back-to-menu:hover {
+    background: #f5f5f5;
+}
+
+.checkout-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 24px;
+    max-width: 800px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.checkout-title {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    text-align: center;
+    color: var(--text);
+}
+
+/* Cart Items in Checkout */
+.cart-items-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 30px;
+}
+
+.cart-item {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.cart-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.cart-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+}
+
+.cart-item-name {
+    font-size: var(--fs-md);
+    font-weight: 600;
+    color: var(--text);
+}
+
+.cart-item-price {
+    font-size: var(--fs-md);
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.cart-item-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px;
+}
+
+.cart-item-total {
+    font-weight: 600;
+    color: var(--text);
+}
+
+.cart-item-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.quantity-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.quantity-btn:hover {
+    background: #f8f8f8;
+    border-color: var(--primary);
+}
+
+.quantity-btn.plus {
+    color: var(--primary);
+}
+
+.quantity-btn.minus {
+    color: #666;
+}
+
+.quantity {
+    font-size: var(--fs-md);
+    font-weight: 600;
+    min-width: 24px;
+    text-align: center;
+}
+
+.remove-item {
+    background: none;
+    border: none;
+    color: #ff4444;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 8px;
+    transition: background 0.2s;
+    margin-left: 8px;
+}
+
+.remove-item:hover {
+    background: rgba(255, 68, 68, 0.1);
+}
+
+/* Empty Cart State */
+.empty-cart {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text-light);
+}
+
+.empty-cart i {
+    font-size: 48px;
+    margin-bottom: 16px;
+    color: #ddd;
+}
+
+.empty-cart h3 {
+    font-size: var(--fs-lg);
+    margin-bottom: 8px;
+    color: var(--text);
+}
+
+.empty-cart p {
+    font-size: var(--fs-md);
+    color: var(--text-light);
+}
+
+/* Empty State Styling */
+.empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-light);
+}
+
+.empty-state i {
+    font-size: 48px;
+    margin-bottom: 16px;
+    color: #e5e5e5;
+}
+
+.empty-state h3 {
+    font-size: var(--fs-lg);
+    margin-bottom: 8px;
+    color: var(--text);
+}
+
+.empty-state p {
+    font-size: var(--fs-md);
+    color: var(--text-light);
+}
+
+/* Checkout Summary */
+.checkout-summary {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 28px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    margin-top: 20px;
+}
+
+.checkout-summary h3 {
+    font-size: var(--fs-lg);
+    font-weight: 600;
+    margin-bottom: 24px;
+    color: var(--text);
+    text-align: center;
+}
+
+.summary-details {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    font-size: var(--fs-md);
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.summary-row:last-child {
+    border-bottom: none;
+}
+
+.summary-row.summary-total {
+    font-size: var(--fs-lg);
+    font-weight: 700;
+    color: var(--text);
+    padding-top: 20px;
+    border-top: 2px solid var(--border);
+    border-bottom: none;
+}
+
+.place-order-btn {
+    background: var(--primary);
+    color: white;
+    padding: 18px;
+    width: 100%;
+    border-radius: 14px;
+    border: none;
+    font-size: var(--fs-lg);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(255, 122, 0, 0.2);
+}
+
+.place-order-btn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(255, 122, 0, 0.25);
+}
+
+.place-order-btn:active {
+    transform: translateY(0);
+}
+
+/* ------------------------------------------------------------
+   FOOTER LINKS
+-------------------------------------------------------------*/
+
+.policy-footer {
+    background: transparent;
+    padding: 30px 0;
+    text-align: center;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.footer-links a {
+    font-size: var(--fs-sm);
+    color: var(--text-light);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.footer-links a:hover {
+    color: var(--primary);
+}
+
+.footer-links span {
+    color: var(--border);
+}
+
+/* ------------------------------------------------------------
+   RESPONSIVE ADJUSTMENTS
+-------------------------------------------------------------*/
+
+@media (max-width: 768px) {
+    .tabs-container {
+        gap: 6px;
+        padding: 0 15px;
+    }
+    
+    .tab {
+        padding: 8px 16px;
+        font-size: 0.8rem;
+    }
+    
+    .section-title {
+        font-size: var(--fs-lg);
+        margin: 20px 0 10px;
+    }
+    
+    .sub-section-title {
+        font-size: var(--fs-md);
+        margin: 16px 0 10px;
+    }
+    
+    .checkout-header {
+        padding: 16px 20px;
+    }
+    
+    .checkout-body {
+        padding: 20px;
+    }
+    
+    .cart-info {
+        flex-direction: column;
+        gap: 8px;
+    }
+}
+
+/* Badge adjustments for better visibility */
+.recommended-badge, .customizable {
+    font-size: 0.65rem;
+    padding: 2px 6px;
+    margin-left: 4px;
+    margin-right: 4px;
+}
+
+/* Menu section spacing */
+.menu-section {
+    margin-bottom: 30px;
+}
+</style>
+
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-utensils"></i>
+                    Orange Restaurant
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <div class="categories">
+        <div class="container">
+            <div class="tabs-container" id="categoryTabs">
+                <!-- Categories will be generated dynamically by JavaScript -->
+            </div>
+        </div>
+    </div>
+    
+    <div class="container" id="menuSectionsContainer">
+        <!-- Menu sections will be generated dynamically by JavaScript -->
+    </div>
+    
+    <!-- Policy Footer -->
+    <footer class="policy-footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="T&C.html">Terms & Conditions</a>
+                <span>|</span>
+                <a href="privacy_policy.html">Privacy Policy</a>
+                <span>|</span>
+                <a href="refund_policy.html">Refund Policy</a>
+                <span>|</span>
+                <a href="shipping_policy.html">Shipping Policy</a>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Improved Footer Cart - Single Line -->
+    <div class="cart-footer" id="cartFooter">
+        <div class="container">
+            <div class="cart-footer-content">
+                <div class="cart-info">
+                    <div class="cart-items-count" id="cartItemsCount">0 items</div>
+                    <div class="cart-total" id="cartTotal">Total: ₹ 0.00</div>
+                </div>
+                <button class="summary-btn" id="summaryBtn">
+                    Summary <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Elegant Checkout Page -->
+    <div class="checkout-page" id="checkoutPage">
+        <div class="checkout-header">
+            <button class="back-to-menu" id="backToMenu">
+                <i class="fas fa-arrow-left"></i> Back
+            </button>
+            <h2>Order Summary</h2>
+        </div>
+        
+        <div class="checkout-body">
+            <div class="cart-items-list" id="cartItemsList">
+                <!-- Cart items will be displayed here -->
+            </div>
+            
+            <div class="checkout-summary">
+                <h3>Order Total</h3>
+                <div class="summary-details">
+                    <div class="summary-row">
+                        <span>Subtotal:</span>
+                        <span id="checkoutSubtotal">₹ 0.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Delivery Fee:</span>
+                        <span>₹ 40.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Tax (5%):</span>
+                        <span id="checkoutTax">₹ 0.00</span>
+                    </div>
+                    <div class="summary-row summary-total">
+                        <span>Total:</span>
+                        <span id="checkoutTotal">₹ 0.00</span>
+                    </div>
+                </div>
+                
+                <button class="place-order-btn" id="placeOrderBtn">
+                    Place Order
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Include the external menu data file -->
+    <script src="menu-data-new.js"></script>
+    
+    <script>
+        // Cart functionality
+        let cart = [];
+        
+        // DOM elements - check if they exist before using them
+        const cartFooter = document.getElementById('cartFooter');
+        const cartItemsCount = document.getElementById('cartItemsCount');
+        const cartTotal = document.getElementById('cartTotal');
+        const summaryBtn = document.getElementById('summaryBtn');
+        const checkoutPage = document.getElementById('checkoutPage');
+        const backToMenu = document.getElementById('backToMenu');
+        const cartItemsList = document.getElementById('cartItemsList');
+        const checkoutSubtotal = document.getElementById('checkoutSubtotal');
+        const checkoutTax = document.getElementById('checkoutTax');
+        const checkoutTotal = document.getElementById('checkoutTotal');
+        const placeOrderBtn = document.getElementById('placeOrderBtn');
+
+        // Load data from localStorage if available
+        function loadMenuData() {
+            const savedData = localStorage.getItem('menuItems');
+            if (savedData) {
+                const parsedData = JSON.parse(savedData);
+                // Update the menuItems with saved data
+                parsedData.forEach(savedItem => {
+                    const index = menuItems.findIndex(item => item.id === savedItem.id);
+                    if (index !== -1) {
+                        menuItems[index] = { ...menuItems[index], ...savedItem };
+                    }
+                });
+            }
+            return menuItems;
+        }
+
+        // Get active menu items
+        function getActiveMenuItems() {
+            // Ensure all items have isActive property
+            return menuItems.filter(item => {
+                if (item.isActive === undefined) {
+                    item.isActive = true;
+                }
+                return item.isActive !== false;
+            });
+        }
+
+        // Generate tabs dynamically
+        function generateCategoryTabs() {
+            const tabsContainer = document.getElementById('categoryTabs');
+            if (!tabsContainer) return;
+            
+            tabsContainer.innerHTML = '';
+            
+            // Sort categories by displayOrder
+            const sortedCategories = [...categories].sort((a, b) => a.displayOrder - b.displayOrder);
+            
+            sortedCategories.forEach(category => {
+                const tab = document.createElement('button');
+                tab.className = 'tab';
+                tab.dataset.category = category.id;
+                tab.innerHTML = `
+                    <i class="${category.icon}"></i>${category.name}
+                `;
+                tabsContainer.appendChild(tab);
+                
+                // Set first tab as active
+                if (category.id === 'recommended') {
+                    tab.classList.add('active');
+                }
+            });
+            
+            // Reinitialize tab functionality
+            setupTabs();
+        }
+
+        // Generate menu sections dynamically
+        function generateMenuSections() {
+            const container = document.getElementById('menuSectionsContainer');
+            if (!container) return;
+            
+            container.innerHTML = '';
+            
+            // Sort categories by displayOrder
+            const sortedCategories = [...categories].sort((a, b) => a.displayOrder - b.displayOrder);
+            
+            sortedCategories.forEach(category => {
+                // Create main section
+                const section = document.createElement('section');
+                section.className = 'menu-section';
+                section.id = `${category.id}-section`;
+                
+                // Create section title
+                const title = document.createElement('h2');
+                title.className = 'section-title';
+                title.textContent = category.name;
+                section.appendChild(title);
+                
+                // Get items for this category
+                let categoryItems;
+                
+                if (category.id === "recommended") {
+                    // For recommended category, get all items where recommended: true
+                    categoryItems = getActiveMenuItems().filter(item => item.recommended === true);
+                } else {
+                    // For other categories, get items that belong to this category
+                    categoryItems = getActiveMenuItems().filter(item => item.category === category.id);
+                }
+                
+                // Check if category has subcategories
+                if (category.subcategories && category.subcategories.length > 0 && category.id !== "recommended") {
+                    // Create sections for each subcategory (only for non-recommended categories)
+                    category.subcategories.forEach(subcategory => {
+                        const subItems = categoryItems.filter(item => item.subcategory === subcategory.id);
+                        
+                        if (subItems.length > 0) {
+                            // Create subcategory title
+                            const subTitle = document.createElement('h3');
+                            subTitle.className = 'sub-section-title';
+                            subTitle.textContent = subcategory.name;
+                            section.appendChild(subTitle);
+                            
+                            // Create items container
+                            const itemsContainer = document.createElement('div');
+                            itemsContainer.className = 'menu-items';
+                            itemsContainer.id = `${category.id}-${subcategory.id}-items`;
+                            
+                            // Add items
+                            subItems.forEach(item => {
+                                const menuItemElement = createMenuItemElement(item);
+                                itemsContainer.appendChild(menuItemElement);
+                            });
+                            
+                            section.appendChild(itemsContainer);
+                        }
+                    });
+                    
+                    // Check for items without subcategory (if any)
+                    const itemsWithoutSubcategory = categoryItems.filter(item => !item.subcategory);
+                    if (itemsWithoutSubcategory.length > 0) {
+                        // Create items container
+                        const itemsContainer = document.createElement('div');
+                        itemsContainer.className = 'menu-items';
+                        itemsContainer.id = `${category.id}-items`;
+                        
+                        // Add items
+                        itemsWithoutSubcategory.forEach(item => {
+                            const menuItemElement = createMenuItemElement(item);
+                            itemsContainer.appendChild(menuItemElement);
+                        });
+                        
+                        section.appendChild(itemsContainer);
+                    }
+                } else {
+                    // Category without subcategories OR Recommended category
+                    const itemsContainer = document.createElement('div');
+                    itemsContainer.className = 'menu-items';
+                    itemsContainer.id = `${category.id}-items`;
+                    
+                    // Add items
+                    categoryItems.forEach(item => {
+                        const menuItemElement = createMenuItemElement(item);
+                        itemsContainer.appendChild(menuItemElement);
+                    });
+                    
+                    section.appendChild(itemsContainer);
+                }
+                
+                // Only add section if it has items
+                if (section.querySelector('.menu-items') && section.querySelector('.menu-items').children.length > 0) {
+                    container.appendChild(section);
+                } else {
+                    // Add empty state for sections with no items
+                    const emptyState = document.createElement('div');
+                    emptyState.className = 'empty-state';
+                    emptyState.innerHTML = `
+                        <i class="fas fa-utensils"></i>
+                        <h3>Coming Soon</h3>
+                        <p>New items will be added shortly</p>
+                    `;
+                    section.appendChild(emptyState);
+                    container.appendChild(section);
+                }
+            });
+            
+            // Add event listeners to menu items
+            setupMenuItemsEventListeners();
+        }
+
+        // Create menu item element
+        function createMenuItemElement(item) {
+            const menuItem = document.createElement('div');
+            menuItem.className = 'menu-item';
+            menuItem.dataset.id = item.id;
+            
+            const recommendedBadge = item.recommended ? 
+                '<span class="recommended-badge">Recommended</span>' : '';
+            
+            const customizableText = item.customizable ? 
+                '<span class="customizable">Customisable</span>' : '';
+            
+            menuItem.innerHTML = `
+                <div class="item-content">
+                    <div class="item-header">
+                        <div class="item-name">${item.name}${recommendedBadge}</div>
+                        <div class="item-price">₹ ${item.price.toFixed(2)}</div>
+                    </div>
+                    ${item.description ? `<p class="item-description">${item.description}</p>` : ''}
+                    <div class="item-footer">
+                        <div class="quantity-controls" style="display: none;">
+                            <button class="qty-btn minus" data-id="${item.id}">-</button>
+                            <span class="quantity-display" data-id="${item.id}">0</span>
+                            <button class="qty-btn plus" data-id="${item.id}">+</button>
+                        </div>
+                        <button class="add-btn" data-id="${item.id}"><i class="fas fa-plus"></i> Add</button>
+                    </div>
+                </div>
+            `;
+            
+            return menuItem;
+        }
+
+        // Update all menu item controls based on cart state
+        function updateAllMenuItemsControls() {
+            document.querySelectorAll('.menu-item').forEach(menuItem => {
+                const itemId = parseInt(menuItem.dataset.id);
+                const cartItem = cart.find(item => item.id === itemId);
+                const addBtn = menuItem.querySelector('.add-btn');
+                const qtyControls = menuItem.querySelector('.quantity-controls');
+                const qtyDisplay = menuItem.querySelector('.quantity-display');
+                
+                if (cartItem && cartItem.quantity > 0) {
+                    // Item is in cart, show quantity controls
+                    if (addBtn) addBtn.style.display = 'none';
+                    if (qtyControls) qtyControls.style.display = 'flex';
+                    if (qtyDisplay) qtyDisplay.textContent = cartItem.quantity;
+                    
+                    // Update minus button state
+                    const minusBtn = menuItem.querySelector('.qty-btn.minus');
+                    if (minusBtn) minusBtn.disabled = cartItem.quantity <= 0;
+                } else {
+                    // Item is not in cart, show add button
+                    if (addBtn) addBtn.style.display = 'flex';
+                    if (qtyControls) qtyControls.style.display = 'none';
+                }
+            });
+        }
+
+        // Add event listeners to menu items
+        function setupMenuItemsEventListeners() {
+            // Remove any existing event listeners first
+            document.body.removeEventListener('click', handleMenuClick);
+            
+            // Add new event listener
+            document.body.addEventListener('click', handleMenuClick);
+        }
+
+        // Handle menu clicks
+        function handleMenuClick(e) {
+            // Add button click
+            if (e.target.classList.contains('add-btn') || e.target.closest('.add-btn')) {
+                const addBtn = e.target.classList.contains('add-btn') ? e.target : e.target.closest('.add-btn');
+                const itemId = parseInt(addBtn.dataset.id);
+                const item = menuItems.find(menuItem => menuItem.id === itemId);
+                
+                if (item) {
+                    addToCart(item);
+                }
+            }
+            
+            // Plus button click
+            if (e.target.classList.contains('qty-btn') && e.target.classList.contains('plus')) {
+                const itemId = parseInt(e.target.dataset.id);
+                const item = menuItems.find(menuItem => menuItem.id === itemId);
+                
+                if (item) {
+                    addToCart(item);
+                }
+            }
+            
+            // Minus button click
+            if (e.target.classList.contains('qty-btn') && e.target.classList.contains('minus')) {
+                const itemId = parseInt(e.target.dataset.id);
+                updateCartItemQuantity(itemId, -1);
+            }
+        }
+
+        // Add item to cart
+        function addToCart(item) {
+            const existingItem = cart.find(cartItem => cartItem.id === item.id);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id: item.id,
+                    name: item.name,
+                    price: item.price,
+                    quantity: 1
+                });
+            }
+            
+            updateCart();
+        }
+
+        // Update item quantity in cart
+        function updateCartItemQuantity(itemId, change) {
+            const itemIndex = cart.findIndex(cartItem => cartItem.id === itemId);
+            
+            if (itemIndex !== -1) {
+                cart[itemIndex].quantity += change;
+                
+                if (cart[itemIndex].quantity <= 0) {
+                    // Remove item from cart when quantity reaches 0
+                    cart.splice(itemIndex, 1);
+                }
+                
+                updateCart();
+            }
+        }
+
+        // Update cart display
+        function updateCart() {
+            let itemCount = 0;
+            let subtotal = 0;
+            
+            cart.forEach(item => {
+                itemCount += item.quantity;
+                subtotal += item.price * item.quantity;
+            });
+            
+            // Update cart elements if they exist
+            if (cartItemsCount) cartItemsCount.textContent = `${itemCount} ${itemCount === 1 ? 'item' : 'items'}`;
+            if (cartTotal) cartTotal.textContent = `Total: ₹ ${subtotal.toFixed(2)}`;
+            
+            // Show or hide footer cart
+            if (cartFooter) {
+                if (itemCount > 0) {
+                    cartFooter.classList.add('active');
+                } else {
+                    cartFooter.classList.remove('active');
+                }
+            }
+            
+            // Update menu item controls
+            updateAllMenuItemsControls();
+            
+            // Update checkout page if it's open
+            if (checkoutPage && checkoutPage.classList.contains('active')) {
+                updateCheckoutPage();
+            }
+        }
+
+        // Update checkout page with elegant design
+        function updateCheckoutPage() {
+            if (!cartItemsList) return;
+            
+            cartItemsList.innerHTML = '';
+            
+            if (cart.length === 0) {
+                cartItemsList.innerHTML = `
+                    <div class="empty-cart">
+                        <i class="fas fa-shopping-cart"></i>
+                        <h3>Your cart is empty</h3>
+                        <p>Add some delicious items to your cart</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            let subtotal = 0;
+            
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                subtotal += itemTotal;
+                
+                const cartItemElement = document.createElement('div');
+                cartItemElement.className = 'cart-item';
+                cartItemElement.innerHTML = `
+                    <div class="cart-item-header">
+                        <div class="cart-item-name">${item.name}</div>
+                        <div class="cart-item-price">₹ ${item.price.toFixed(2)}</div>
+                    </div>
+                    <div class="cart-item-details">
+                        <div class="cart-item-total">₹ ${itemTotal.toFixed(2)}</div>
+                        <div class="cart-item-controls">
+                            <button class="quantity-btn minus" data-id="${item.id}">-</button>
+                            <span class="quantity">${item.quantity}</span>
+                            <button class="quantity-btn plus" data-id="${item.id}">+</button>
+                            <button class="remove-item" data-id="${item.id}" title="Remove item">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                
+                cartItemsList.appendChild(cartItemElement);
+                
+                // Add event listeners for quantity controls
+                const minusBtn = cartItemElement.querySelector('.minus');
+                const plusBtn = cartItemElement.querySelector('.plus');
+                const removeBtn = cartItemElement.querySelector('.remove-item');
+                
+                if (minusBtn) minusBtn.addEventListener('click', () => updateCartItemQuantity(item.id, -1));
+                if (plusBtn) plusBtn.addEventListener('click', () => updateCartItemQuantity(item.id, 1));
+                if (removeBtn) removeBtn.addEventListener('click', () => removeFromCart(item.id));
+            });
+            
+            // Update checkout summary
+            const tax = subtotal * 0.05; // 5% tax
+            const deliveryFee = 40;
+            const total = subtotal + tax + deliveryFee;
+            
+            if (checkoutSubtotal) checkoutSubtotal.textContent = `₹ ${subtotal.toFixed(2)}`;
+            if (checkoutTax) checkoutTax.textContent = `₹ ${tax.toFixed(2)}`;
+            if (checkoutTotal) checkoutTotal.textContent = `₹ ${total.toFixed(2)}`;
+        }
+
+        // Remove item from cart
+        function removeFromCart(itemId) {
+            cart = cart.filter(item => item.id !== itemId);
+            updateCart();
+        }
+
+        // Function to center the active tab
+        function centerActiveTab() {
+            const tabsContainer = document.querySelector('.tabs-container');
+            const activeTab = document.querySelector('.tab.active');
+            
+            if (!tabsContainer || !activeTab) return;
+            
+            // Calculate positions for centering
+            const containerWidth = tabsContainer.offsetWidth;
+            const tabWidth = activeTab.offsetWidth;
+            const tabLeft = activeTab.offsetLeft;
+            const scrollPosition = tabLeft - (containerWidth / 2) + (tabWidth / 2);
+            
+            // Apply smooth scrolling
+            tabsContainer.scrollTo({
+                left: scrollPosition,
+                behavior: 'smooth'
+            });
+        }
+
+        // Tab functionality with scroll-based activation
+        function setupTabs() {
+            const tabs = document.querySelectorAll('.tab');
+            const sections = document.querySelectorAll('.menu-section');
+            
+            // Manual tab click - scroll to section
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // Remove active class from all tabs
+                    tabs.forEach(t => t.classList.remove('active'));
+                    
+                    // Add active class to clicked tab
+                    tab.classList.add('active');
+                    
+                    // Center the active tab
+                    centerActiveTab();
+                    
+                    // Scroll to corresponding section
+                    const category = tab.dataset.category;
+                    const section = document.getElementById(`${category}-section`);
+                    if (section) {
+                        // Calculate offset for fixed headers
+                        const headerHeight = document.querySelector('header').offsetHeight;
+                        const categoriesHeight = document.querySelector('.categories').offsetHeight;
+                        const offset = headerHeight + categoriesHeight + 20;
+                        
+                        const sectionTop = section.offsetTop - offset;
+                        
+                        window.scrollTo({
+                            top: sectionTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Auto-activate tabs based on scroll position
+            function activateTabOnScroll() {
+                const headerHeight = document.querySelector('header').offsetHeight;
+                const categoriesHeight = document.querySelector('.categories').offsetHeight;
+                const offset = headerHeight + categoriesHeight + 100; // Add some buffer
+                
+                let currentSection = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - offset;
+                    const sectionHeight = section.offsetHeight;
+                    
+                    if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                        currentSection = section.id.replace('-section', '');
+                    }
+                });
+                
+                if (currentSection) {
+                    tabs.forEach(tab => {
+                        tab.classList.remove('active');
+                        if (tab.dataset.category === currentSection) {
+                            tab.classList.add('active');
+                            centerActiveTab();
+                        }
+                    });
+                }
+            }
+            
+            // Listen for scroll events
+            window.addEventListener('scroll', activateTabOnScroll);
+        }
+
+        // Event listeners - only add if elements exist
+        if (summaryBtn) {
+            summaryBtn.addEventListener('click', () => {
+                if (cart.length > 0) {
+                    if (checkoutPage) checkoutPage.classList.add('active');
+                    document.body.classList.add('checkout-active');
+                    updateCheckoutPage();
+                } else {
+                    alert('Your cart is empty!');
+                }
+            });
+        }
+
+        if (backToMenu) {
+            backToMenu.addEventListener('click', () => {
+                if (checkoutPage) checkoutPage.classList.remove('active');
+                document.body.classList.remove('checkout-active');
+            });
+        }
+
+        if (placeOrderBtn) {
+            placeOrderBtn.addEventListener('click', () => {
+                if (cart.length > 0) {
+                    alert('Order placed successfully! Thank you for your order.');
+                    cart = [];
+                    updateCart();
+                    if (checkoutPage) checkoutPage.classList.remove('active');
+                    document.body.classList.remove('checkout-active');
+                } else {
+                    alert('Your cart is empty!');
+                }
+            });
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', () => {
+            loadMenuData();
+            generateCategoryTabs();
+            generateMenuSections();
+            setupTabs();
+            updateCart();
+            
+            // Center the recommended tab on load
+            setTimeout(() => {
+                centerActiveTab();
+            }, 100);
+        });
+    </script>
+</body>
+</html>
